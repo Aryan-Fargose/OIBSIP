@@ -160,4 +160,182 @@ Standardisation ensures that features with larger numerical values do not dispro
 
 The Elbow Method was used to identify an appropriate number of clusters.
 
-Within-Cluster Sum of Squares (WCSS) was calculated for K values ranging from 1 to 10
+Within-Cluster Sum of Squares (WCSS) was calculated for K values ranging from 1 to 10.
+
+### Elbow Method Visualisation
+
+![Elbow Method](visualizations/elbow_method.png)
+
+Based on the observed elbow curve, **K = 3** was selected because the reduction in WCSS starts slowing down after this point.
+
+## 10. K-Means Clustering
+
+The K-Means algorithm was implemented using Scikit-learn.
+
+### Model Configuration
+
+| Parameter | Value |
+|---|---|
+| Algorithm | K-Means |
+| Number of clusters | 3 |
+| Initialisation | k-means++ |
+| Random state | 42 |
+| Number of initialisations | 10 |
+
+The model successfully divided 4,338 customers into three distinct segments.
+
+## 11. Customer Segmentation Results
+
+The following results were obtained from the trained K-Means model.
+
+| Cluster | Customers | Avg. Recency | Avg. Frequency | Avg. Monetary (£) |
+|---|---:|---:|---:|---:|
+| 0 | 1,082 | 247.11 | 1.58 | 629.66 |
+| 1 | 3,230 | 41.45 | 4.67 | 1,849.67 |
+| 2 | 26 | 6.04 | 66.42 | 85,826.08 |
+
+### 11.1 Cluster 0 – At-Risk / Inactive Customers
+
+- Customer count: 1,082
+- Average Recency: 247.11 days
+- Average Frequency: 1.58
+- Average Monetary: £629.66
+
+**Business Insight:**
+
+These customers have relatively long periods since their last purchase and low purchasing frequency.
+
+**Marketing Recommendations:**
+
+- Introduce customer re-engagement campaigns.
+- Provide personalised discounts.
+- Send reminder emails.
+- Encourage repeat purchases.
+
+### 11.2 Cluster 1 – Regular Customers
+
+- Customer count: 3,230
+- Average Recency: 41.45 days
+- Average Frequency: 4.67
+- Average Monetary: £1,849.67
+
+**Business Insight:**
+
+This is the largest segment, consisting of customers who purchase relatively regularly and demonstrate comparatively recent activity.
+
+**Marketing Recommendations:**
+
+- Introduce loyalty programmes.
+- Provide personalised product recommendations.
+- Encourage cross-selling.
+- Offer repeat-purchase incentives.
+
+### 11.3 Cluster 2 – High-Value VIP Customers
+
+- Customer count: 26
+- Average Recency: 6.04 days
+- Average Frequency: 66.42
+- Average Monetary: £85,826.08
+
+**Business Insight:**
+
+This small segment demonstrates exceptionally high purchasing frequency and monetary value.
+
+**Marketing Recommendations:**
+
+- Provide exclusive rewards.
+- Offer premium customer support.
+- Introduce VIP membership benefits.
+- Provide early access to new products.
+
+## 12. Data Visualisations
+
+### 12.1 Customer Cluster Distribution
+
+This chart represents the number of customers assigned to each of the three clusters.
+
+![Customer Cluster Distribution](visualizations/cluster_distribution.png)
+
+**Observation:** Cluster 1 represents the largest customer segment, while Cluster 2 contains a small group of exceptionally high-value customers.
+
+### 12.2 Recency vs Frequency
+
+This scatter plot illustrates the relationship between customer purchase recency and purchase frequency across the identified customer segments.
+
+![Recency vs Frequency](visualizations/recency_frequency.png)
+
+**Observation:** The visualisation helps distinguish customers based on how recently and how frequently they purchase.
+
+### 12.3 Frequency vs Monetary
+
+This scatter plot compares purchasing frequency with total customer spending. A logarithmic scale is used for monetary value to make the differences easier to examine.
+
+![Frequency vs Monetary](visualizations/frequency_monetary.png)
+
+**Observation:** Cluster 2 demonstrates exceptionally high purchase frequency and monetary value compared with the other segments.
+
+## 13. Key Business Insights
+
+1. Most customers belong to Cluster 1, representing the regular customer segment.
+2. Cluster 0 provides an opportunity for customer reactivation and retention campaigns.
+3. Cluster 2 contains only 26 customers but demonstrates exceptionally high average spending.
+4. RFM analysis helps businesses understand customer value and purchasing behaviour.
+5. Customer segmentation enables targeted marketing instead of treating every customer identically.
+
+## 14. Project Structure
+
+```text
+DataAnalytics-L1-CustomerSegmentation/
+│
+├── README.md
+│
+├── OIBSIP_Task2_Customer_Segmentation.ipynb
+│
+├── Customer_Segmentation_Results.csv
+│
+├── Customer_Cluster_Profile.csv
+│
+└── visualizations/
+    ├── rfm_distributions.png
+    ├── elbow_method.png
+    ├── cluster_distribution.png
+    ├── recency_frequency.png
+    └── frequency_monetary.png
+```
+
+## 15. Project Outputs
+
+The project includes:
+
+- Complete Jupyter Notebook implementation.
+- Cleaned customer-level RFM analysis.
+- K-Means customer cluster assignments.
+- Customer cluster profile.
+- Five data visualisations.
+- Business insights and marketing recommendations.
+
+## 16. Conclusion
+
+This project demonstrates the application of unsupervised machine learning for customer segmentation.
+
+By combining RFM analysis, feature standardisation and K-Means clustering, 4,338 customers were successfully divided into three behavioural segments.
+
+The resulting segments provide useful insights into customer purchasing behaviour and help businesses develop targeted marketing strategies, improve customer retention and identify high-value customers.
+
+The project highlights how data analytics and machine learning can support practical business decision-making.
+
+## 17. Author and Project Information
+
+**Internship:** OIBSIP – Data Analytics
+
+**Level:** Level 1
+
+**Task:** Task 2 – Customer Segmentation Analysis
+
+**Algorithm:** K-Means Clustering
+
+**Dataset:** UCI Online Retail Dataset
+
+**Repository:** [GitHub – Aryan-Fargose](https://github.com/Aryan-Fargose)
+
+---
