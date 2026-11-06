@@ -1,56 +1,66 @@
-# Credit Card Fraud Detection
+# Customer Segmentation Analysis
 
-### OIBSIP Data Analytics Internship | Level 2 – Task 3
+### OIBSIP Data Analytics Internship | Level 1 – Task 2
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
 ![Machine Learning](https://img.shields.io/badge/Machine-Learning-orange)
-![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-ML-yellow?logo=scikitlearn)
+![Scikit Learn](https://img.shields.io/badge/Scikit--Learn-Clustering-yellow?logo=scikitlearn)
 ![Status](https://img.shields.io/badge/Status-Completed-success)
 
 ---
 
 ## 1. Project Overview
 
-This project focuses on detecting fraudulent credit card transactions using Machine Learning classification algorithms.
+This project focuses on customer segmentation using machine learning techniques to identify distinct groups of customers based on their purchasing behaviour.
 
-The objective is to identify suspicious transactions from a highly imbalanced financial dataset and compare the performance of two machine learning models:
+The analysis uses RFM (Recency, Frequency and Monetary) analysis combined with the K-Means clustering algorithm to group customers into meaningful segments.
 
-- Logistic Regression
-- Random Forest Classifier
-
-The models are evaluated using Accuracy, Precision, Recall, F1-Score and ROC-AUC.
+The objective is to understand customer purchasing patterns and develop targeted marketing strategies for different customer groups.
 
 ## 2. Project Objectives
 
-- Analyse fraudulent and genuine credit card transactions.
-- Perform Exploratory Data Analysis (EDA).
-- Understand the challenges of imbalanced datasets.
-- Apply SMOTE to balance the training dataset.
-- Build Logistic Regression and Random Forest models.
-- Evaluate and compare model performance.
-- Identify important features influencing fraud predictions.
-- Discuss scalability for large-scale transaction processing.
+- Inspect and clean the retail transaction dataset.
+- Handle missing values, duplicates and inconsistent records.
+- Calculate Recency, Frequency and Monetary values.
+- Apply feature scaling using StandardScaler.
+- Determine the optimal number of clusters using the Elbow Method.
+- Implement K-Means clustering.
+- Visualize and interpret customer segments.
+- Develop marketing recommendations for each customer group.
 
 ## 3. Dataset Information
 
-**Dataset:** Credit Card Fraud Detection
+**Dataset:** Online Retail Dataset
 
-**Source:** [Kaggle – Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud)
+**Source:** [UCI Machine Learning Repository – Online Retail](https://archive.ics.uci.edu/dataset/352/online+retail)
+
+The dataset contains transactions occurring between 01/12/2010 and 09/12/2011 for a UK-based online retail company.
+
+### Original Dataset
 
 | Attribute | Details |
 |---|---|
-| Total transactions | 284,807 |
-| Genuine transactions | 284,315 |
-| Fraudulent transactions | 492 |
-| Input features | 30 |
-| Target column | Class |
+| Original records | 541,909 |
+| Original columns | 8 |
+| Missing Description | 1,454 |
+| Missing CustomerID | 135,080 |
+| Duplicate records | 5,268 |
+| Unique customers | 4,372 |
+| Countries | 38 |
 
-The dataset contains credit card transactions made by European cardholders in September 2013.
+### Data Cleaning
 
-- `Class = 0`: Genuine transaction
-- `Class = 1`: Fraudulent transaction
+The following cleaning operations were performed:
 
-Most features (`V1` to `V28`) are anonymized PCA-transformed features. The dataset also includes `Time` and `Amount`.
+- Removed records with missing CustomerID.
+- Removed duplicate records.
+- Excluded cancelled invoices.
+- Removed transactions with non-positive Quantity.
+- Removed transactions with non-positive UnitPrice.
+- Converted CustomerID into integer format.
+- Created a new TotalPrice column.
+
+The cleaned dataset contained **392,692 rows and 9 columns**.
 
 ## 4. Technologies Used
 
@@ -61,166 +71,167 @@ Most features (`V1` to `V28`) are anonymized PCA-transformed features. The datas
 - Matplotlib
 - Seaborn
 - Scikit-learn
-- Imbalanced-learn
+- StandardScaler
+- K-Means Clustering
 
-## 5. Project Workflow
+## 5. Project Methodology
 
-### Step 1: Data Inspection
+### Step 1: Data Inspection and Cleaning
 
-- Loaded the credit card transaction dataset.
-- Inspected rows, columns and data types.
-- Checked missing values and duplicate records.
-- Examined the distribution of fraudulent and genuine transactions.
+The dataset was loaded and examined to understand its structure, data types, missing values and duplicate records.
 
-### Step 2: Exploratory Data Analysis
+Data cleaning was performed to improve data quality and ensure reliable customer segmentation.
 
-Performed visual analysis of:
+### Step 2: RFM Analysis
 
-- Transaction class distribution.
-- Transaction amount distribution.
-- Fraudulent versus genuine transaction amounts.
-- Transaction time distribution.
+RFM analysis was used to understand customer purchasing behaviour through three important metrics.
 
-### Step 3: Handling Class Imbalance
-
-The dataset contains significantly fewer fraudulent transactions than genuine transactions.
-
-SMOTE (Synthetic Minority Over-sampling Technique) was applied to the training dataset to generate synthetic minority-class samples.
-
-A stratified train-test split was used to preserve the original class proportions.
-
-**Important:** SMOTE was applied only to the training data. The test dataset retained its original distribution to prevent data leakage.
-
-### Step 4: Model Development
-
-**Logistic Regression**
-
-- Used as a baseline classification algorithm.
-- Trained on the SMOTE-balanced training dataset.
-
-**Random Forest Classifier**
-
-- Used an ensemble of decision trees.
-- Configured with 50 estimators.
-- Maximum tree depth set to 15.
-- Class weighting enabled.
-
-### Step 5: Model Evaluation
-
-The following metrics were used:
-
-| Metric | Description |
+| Metric | Meaning |
 |---|---|
-| Accuracy | Overall proportion of correct predictions |
-| Precision | Proportion of predicted fraud cases that were actually fraudulent |
-| Recall | Proportion of actual fraud cases successfully detected |
-| F1-Score | Harmonic mean of Precision and Recall |
-| ROC-AUC | Ability to distinguish between fraud and genuine transactions |
+| Recency | Number of days since the customer's last purchase |
+| Frequency | Number of unique invoices purchased by the customer |
+| Monetary | Total amount spent by the customer |
 
-Accuracy alone can be misleading when working with highly imbalanced datasets. Precision and Recall are particularly important in fraud detection.
+A snapshot date was calculated using the latest invoice date plus one day.
 
-### Step 6: Feature Importance
+These three metrics were calculated for each customer using CustomerID.
 
-Random Forest feature importance was used to identify which input features contributed most to the model's predictions.
+### Step 3: Feature Scaling
 
-### Step 7: Scalability Analysis
+StandardScaler was applied to Recency, Frequency and Monetary values.
 
-For a system processing one million transactions per hour, possible technologies include:
+Scaling ensures that features with larger numerical ranges do not disproportionately influence the K-Means clustering algorithm.
 
-- Apache Kafka for transaction streaming.
-- Apache Spark for distributed processing.
-- REST APIs for real-time predictions.
-- Cloud infrastructure with auto-scaling.
-- Continuous monitoring and model retraining.
+### Step 4: Elbow Method
 
-This is a proposed production architecture, not a real-time deployment implemented in this project.
+The Elbow Method was used to determine the optimal number of clusters.
 
----
+Different K values were tested, and their Within-Cluster Sum of Squares (WCSS) values were calculated.
 
-# Visualizations
+The graph indicated an elbow around **K = 3**, so three clusters were selected.
 
-### 1. RFM Distributions
+### Step 5: K-Means Clustering
+
+K-Means clustering was implemented with the following configuration:
+
+- Number of clusters: 3
+- Initialization: K-Means++
+- Random state: 42
+- Number of initializations: 10
+
+Each customer was assigned to one of the three clusters.
+
+### Step 6: Cluster Profiling
+
+The clusters were analysed using their average Recency, Frequency and Monetary values.
+
+The number of customers in each cluster was also examined to understand customer distribution.
+
+## 6. Customer Segmentation Results
+
+Three customer segments were identified.
+
+| Cluster | Customers | Avg. Recency | Avg. Frequency | Avg. Monetary |
+|---|---:|---:|---:|---:|
+| Cluster 0 | 1,082 | 247.11 | 1.58 | £629.66 |
+| Cluster 1 | 3,230 | 41.45 | 4.67 | £1,849.67 |
+| Cluster 2 | 26 | 6.04 | 66.42 | £85,826.08 |
+
+### Cluster 0 – At-Risk / Inactive Customers
+
+- Highest average Recency.
+- Lowest purchase Frequency.
+- Lower average Monetary value.
+
+**Marketing Recommendation:**
+- Send personalized re-engagement campaigns.
+- Offer limited-time discounts.
+- Share product recommendations to encourage repeat purchases.
+
+### Cluster 1 – Regular Customers
+
+- Moderate average Recency.
+- Regular purchase Frequency.
+- Moderate average Monetary value.
+
+**Marketing Recommendation:**
+- Introduce loyalty and reward programs.
+- Provide personalized product recommendations.
+- Encourage repeat purchases through targeted promotions.
+
+### Cluster 2 – High-Value VIP Customers
+
+- Lowest average Recency.
+- Highest purchase Frequency.
+- Extremely high average Monetary value.
+
+**Marketing Recommendation:**
+- Provide exclusive offers and premium services.
+- Introduce VIP loyalty benefits.
+- Offer early access to new products.
+- Maintain strong customer relationships through personalized engagement.
+
+## 7. Data Visualizations
+
+The following visualizations were generated during the analysis.
+
+### 7.1 RFM Distributions
 
 Shows the distribution of Recency, Frequency and Monetary values.
 
-![RFM Distributions](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/visualizations/rfm_distributions.png)
+![RFM Distributions](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/rfm_distributions.png)
 
-### 2. Elbow Method
+### 7.2 Elbow Method
 
 Helps determine the optimal number of clusters for K-Means.
 
-![Elbow Method](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/visualizations/elbow_method.png)
+![Elbow Method](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/elbow_method.png)
 
-### 3. Customer Cluster Distribution
+### 7.3 Customer Cluster Distribution
 
 Shows the number of customers assigned to each cluster.
 
-![Cluster Distribution](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/visualizations/cluster_distribution.png)
+![Cluster Distribution](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/cluster_distribution.png)
 
-### 4. Recency vs Frequency
+### 7.4 Recency vs Frequency
 
 Visualizes customer segmentation based on Recency and Frequency.
 
-![Recency vs Frequency](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/visualizations/recency_frequency.png)
+![Recency vs Frequency](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/recency_frequency.png)
 
-### 5. Frequency vs Monetary
+### 7.5 Frequency vs Monetary
 
 Shows the relationship between customer purchase frequency and monetary value.
 
-![Frequency vs Monetary](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/visualizations/frequency_monetary.png)
-
-## 7. Model Performance Results
-
-The project evaluates both models using five classification metrics.
-
-| Evaluation Metric | Logistic Regression | Random Forest |
-|---|---|---|
-| Accuracy | Refer to results CSV | Refer to results CSV |
-| Precision | Refer to results CSV | Refer to results CSV |
-| Recall | Refer to results CSV | Refer to results CSV |
-| F1-Score | Refer to results CSV | Refer to results CSV |
-| ROC-AUC | Refer to results CSV | Refer to results CSV |
-
-For exact numerical results and training times, refer to:
-
-- `final_model_results.csv`
-- `model_comparison.csv`
-
-Feature importance values are available in `feature_importance.csv`.
+![Frequency vs Monetary](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/frequency_monetary.png)
 
 ## 8. Project Structure
 
 ```text
-DataAnalytics-L2-FraudDetection/
+DataAnalytics-L1-CustomerSegmentation/
 │
-├── OIBSIP_Task3_Fraud_Detection.ipynb
+├── OIBSIP_Task2_Customer_Segmentation (2).ipynb
 ├── README.md
 │
-├── final_model_results.csv
-├── model_comparison.csv
-├── feature_importance.csv
+├── Customer_Cluster_Profile.csv
+├── Customer_Segmentation_Results.csv
 │
-├── class_distribution.png
-├── transaction_amounts.png
-├── fraud_vs_genuine.png
-├── transaction_time.png
-├── smote_comparison.png
-├── confusion_matrix_lr.png
-├── confusion_matrix_rf.png
-├── roc_curve.png
-├── model_comparison.png
-└── feature_importance.png
+├── rfm_distributions.png
+├── elbow_method.png
+├── cluster_distribution.png
+├── recency_frequency.png
+└── frequency_monetary.png
 ```
 
 ## 9. Conclusion
 
-This project demonstrates how machine learning algorithms can be applied to credit card fraud detection.
+This project demonstrates how customer segmentation can be performed using RFM analysis and K-Means clustering.
 
-Logistic Regression and Random Forest were trained and evaluated using a highly imbalanced financial transaction dataset.
+The analysis identified three distinct customer groups: At-Risk / Inactive Customers, Regular Customers and High-Value VIP Customers.
 
-SMOTE was used to address class imbalance in the training data, while multiple evaluation metrics were used to assess model performance.
+These segments provide useful insights into purchasing behaviour and can help businesses develop targeted marketing strategies, improve customer retention and increase customer lifetime value.
 
-The project also demonstrates the importance of feature importance analysis and discusses how fraud detection systems can be scaled for high-volume transaction processing.
+The project also demonstrates the importance of data cleaning, feature scaling, clustering and visualization in customer analytics.
 
 ## 10. Internship Information
 
@@ -230,9 +241,9 @@ The project also demonstrates the importance of feature importance analysis and 
 
 **Track:** Data Analytics
 
-**Level:** Level 2
+**Level:** Level 1
 
-**Task:** Task 3 – Fraud Detection
+**Task:** Task 2 – Customer Segmentation Analysis
 
 **Author:** [Aryan Fargose](https://github.com/Aryan-Fargose)
 
