@@ -137,73 +137,37 @@ This is a proposed production architecture, not a real-time deployment implement
 
 ---
 
-# 6. Data Visualizations
+# Visualizations
 
-The following visualizations were generated during the analysis.
+### 1. RFM Distributions
 
-### 6.1 Class Distribution
+Shows the distribution of Recency, Frequency and Monetary values.
 
-Shows the imbalance between genuine and fraudulent transactions.
+![RFM Distributions](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/visualizations/rfm_distributions.png)
 
-![Class Distribution](class_distribution.png)
+### 2. Elbow Method
 
-### 6.2 Transaction Amount Distribution
+Helps determine the optimal number of clusters for K-Means.
 
-Displays the distribution of transaction amounts.
+![Elbow Method](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/visualizations/elbow_method.png)
 
-![Transaction Amount Distribution](transaction_amounts.png)
+### 3. Customer Cluster Distribution
 
-### 6.3 Fraud vs Genuine Transaction Amounts
+Shows the number of customers assigned to each cluster.
 
-Compares transaction amount distributions across both classes.
+![Cluster Distribution](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/visualizations/cluster_distribution.png)
 
-![Fraud vs Genuine](fraud_vs_genuine.png)
+### 4. Recency vs Frequency
 
-### 6.4 Transaction Time Distribution
+Visualizes customer segmentation based on Recency and Frequency.
 
-Displays transactions against elapsed time from the first transaction.
+![Recency vs Frequency](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/visualizations/recency_frequency.png)
 
-![Transaction Time](transaction_time.png)
+### 5. Frequency vs Monetary
 
-**Note:** The dataset's `Time` column represents elapsed seconds, not actual clock time.
+Shows the relationship between customer purchase frequency and monetary value.
 
-### 6.5 SMOTE Class Balancing
-
-Compares class distribution before and after applying SMOTE to the training dataset.
-
-![SMOTE Comparison](smote_comparison.png)
-
-### 6.6 Logistic Regression Confusion Matrix
-
-Shows the classification results of Logistic Regression.
-
-![Logistic Regression Confusion Matrix](confusion_matrix_lr.png)
-
-### 6.7 Random Forest Confusion Matrix
-
-Shows the classification results of Random Forest.
-
-![Random Forest Confusion Matrix](confusion_matrix_rf.png)
-
-### 6.8 ROC Curve Comparison
-
-Compares the classification performance of both models using ROC curves.
-
-![ROC Curve](roc_curve.png)
-
-### 6.9 Model Performance Comparison
-
-Compares Accuracy, Precision, Recall, F1-Score and ROC-AUC.
-
-![Model Comparison](model_comparison.png)
-
-### 6.10 Feature Importance
-
-Displays the top 15 features according to Random Forest feature importance.
-
-![Feature Importance](feature_importance.png)
-
----
+![Frequency vs Monetary](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L1-CustomerSegmentation/visualizations/frequency_monetary.png)
 
 ## 7. Model Performance Results
 
