@@ -134,71 +134,45 @@ This is a proposed production architecture, not a real-time deployment implement
 
 # 6. Data Visualizations
 
-The following visualizations were generated during the analysis.
-
 ### 6.1 Class Distribution
 
-Shows the imbalance between genuine and fraudulent transactions.
-
-![Class Distribution](visualizations/class_distribution.png)
+![Class Distribution](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L2-FraudDetection/class_distribution.png)
 
 ### 6.2 Transaction Amount Distribution
 
-Displays the distribution of transaction amounts.
+![Transaction Amounts](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L2-FraudDetection/transaction_amounts.png)
 
-![Transaction Amount Distribution](visualizations/transaction_amounts.png)
+### 6.3 Fraud vs Genuine Transactions
 
-### 6.3 Fraud vs Genuine Transaction Amounts
-
-Compares transaction amount distributions across both classes.
-
-![Fraud vs Genuine](visualizations/fraud_vs_genuine.png)
+![Fraud vs Genuine](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L2-FraudDetection/fraud_vs_genuine.png)
 
 ### 6.4 Transaction Time Distribution
 
-Displays transactions against elapsed time from the first transaction.
-
-![Transaction Time](visualizations/transaction_time.png)
-
-**Note:** The dataset's `Time` column represents elapsed seconds, not actual clock time.
+![Transaction Time](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L2-FraudDetection/transaction_time.png)
 
 ### 6.5 SMOTE Class Balancing
 
-Compares class distribution before and after applying SMOTE to the training dataset.
-
-![SMOTE Comparison](visualizations/smote_comparison.png)
+![SMOTE Comparison](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L2-FraudDetection/smote_comparison.png)
 
 ### 6.6 Logistic Regression Confusion Matrix
 
-Shows the classification results of Logistic Regression.
-
-![Logistic Regression Confusion Matrix](visualizations/confusion_matrix_lr.png)
+![Logistic Regression Confusion Matrix](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L2-FraudDetection/confusion_matrix_lr.png)
 
 ### 6.7 Random Forest Confusion Matrix
 
-Shows the classification results of Random Forest.
-
-![Random Forest Confusion Matrix](visualizations/confusion_matrix_rf.png)
+![Random Forest Confusion Matrix](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L2-FraudDetection/confusion_matrix_rf.png)
 
 ### 6.8 ROC Curve Comparison
 
-Compares the classification performance of both models using ROC curves.
-
-![ROC Curve](visualizations/roc_curve.png)
+![ROC Curve](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L2-FraudDetection/roc_curve.png)
 
 ### 6.9 Model Performance Comparison
 
-Compares Accuracy, Precision, Recall, F1-Score and ROC-AUC.
-
-![Model Comparison](visualizations/model_comparison.png)
+![Model Comparison](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L2-FraudDetection/model_comparison.png)
 
 ### 6.10 Feature Importance
 
-Displays the top 15 features according to Random Forest feature importance.
-
-![Feature Importance](visualizations/feature_importance.png)
-
----
+![Feature Importance](https://raw.githubusercontent.com/Aryan-Fargose/OIBSIP/main/OIBSIP/DataAnalytics-L2-FraudDetection/feature_importance.png)
 
 ## 7. Model Performance Results
 
